@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { 
   BookOpen, FileText, ExternalLink, Github, Download, 
-  Code, Tool, ChevronRight, ScrollText, Link as LinkIcon,
+  Code, Wrench, ChevronRight, ScrollText, Link as LinkIcon,
   BookMarked, ArrowUpRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -204,7 +204,7 @@ const Resources = () => {
         {/* Tools Section */}
         <section id="tools" className="py-12 container mx-auto px-4">
           <div className="flex items-center mb-8">
-            <Tool className="text-primary mr-3 h-6 w-6" />
+            <Wrench className="text-primary mr-3 h-6 w-6" />
             <h2 className="text-2xl font-bold">Analysis Tools</h2>
           </div>
           
