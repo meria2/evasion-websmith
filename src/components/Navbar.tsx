@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Shield, ExternalLink, Github } from 'lucide-react';
+import { Menu, X, Shield, Github, LogIn } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
@@ -36,6 +36,12 @@ const Navbar = () => {
               <Github className="h-4 w-4" />
               <span>GitHub</span>
             </a>
+            <Link to="/login">
+              <Button variant="outline" className="flex items-center gap-1">
+                <LogIn className="h-4 w-4" />
+                <span>Sign In</span>
+              </Button>
+            </Link>
             <Button variant="outline" className="neon-border">
               Join Community
             </Button>
@@ -84,6 +90,14 @@ const Navbar = () => {
               <Github className="h-4 w-4" />
               <span>GitHub</span>
             </a>
+            <Link
+              to="/login"
+              className="block px-3 py-2 text-foreground/80 hover:text-primary hover:bg-muted/50 rounded-md transition-colors flex items-center gap-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <LogIn className="h-4 w-4" />
+              <span>Sign In</span>
+            </Link>
             <div className="px-3 pt-2">
               <Button variant="outline" className="w-full neon-border">
                 Join Community
