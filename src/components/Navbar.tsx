@@ -1,11 +1,25 @@
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Shield, Github, LogIn } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
+
+  // Check if user is on a post-login page to simulate login state
+  useEffect(() => {
+    const loggedInRoutes = [
+      '/available-techniques',
+      '/payload-form',
+      '/generate',
+      '/summary'
+    ];
+    
+    setIsLoggedIn(loggedInRoutes.includes(location.pathname));
+  }, [location]);
 
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-muted">
@@ -36,12 +50,23 @@ const Navbar = () => {
               <Github className="h-4 w-4" />
               <span>GitHub</span>
             </a>
-            <Link to="/login">
-              <Button variant="outline" className="flex items-center gap-1">
-                <LogIn className="h-4 w-4" />
-                <span>Sign In</span>
-              </Button>
-            </Link>
+            
+            {isLoggedIn ? (
+              <Link to="/available-techniques">
+                <Button variant="outline" className="flex items-center gap-1">
+                  <Shield className="h-4 w-4" />
+                  <span>My Dashboard</span>
+                </Button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <Button variant="outline" className="flex items-center gap-1">
+                  <LogIn className="h-4 w-4" />
+                  <span>Sign In</span>
+                </Button>
+              </Link>
+            )}
+            
             <Button variant="outline" className="neon-border">
               Join Community
             </Button>

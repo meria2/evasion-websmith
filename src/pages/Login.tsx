@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -29,6 +28,7 @@ type FormValues = z.infer<typeof formSchema>;
 const Login = () => {
   const [showPassword, setShowPassword] = React.useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -39,12 +39,15 @@ const Login = () => {
   });
 
   const onSubmit = (values: FormValues) => {
-    // This is just a placeholder. In a real app, you would connect to a backend
+    // This is just a demo login, in a real app you would verify credentials
     console.log(values);
     toast({
-      title: "Login attempt",
-      description: "This is a demo. In a real app, this would authenticate with a backend.",
+      title: "Login successful",
+      description: "Welcome back! You are now signed in.",
     });
+    
+    // Navigate to the available techniques page as if user logged in
+    navigate('/available-techniques');
   };
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
